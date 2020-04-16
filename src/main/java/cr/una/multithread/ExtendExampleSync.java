@@ -1,17 +1,19 @@
 package cr.una.multithread;
 
-public class ExtendExample extends Thread {
+public class ExtendExampleSync extends Thread {
     private Thread t;
     private String threadName;
     PrintDemo  PD;
 
-    public ExtendExample(String name, PrintDemo pd) {
+    public ExtendExampleSync(String name, PrintDemo pd) {
         threadName = name;
         PD = pd;
     }
 
     public void run() {
-        PD.printCount();
+        synchronized(PD) {
+            PD.printCount();
+        }
         System.out.println("Thread " +  threadName + " exiting.");
     }
 
